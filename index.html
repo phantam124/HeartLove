@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trái Tim Hoạt Hình</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Container for the heart */
+        .heart-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* Main Heart Styling */
+        .heart {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #ff4757;
+            transform: rotate(45deg);
+            animation: heartbeat 1.4s linear infinite;
+            box-shadow: 
+                0 0 40px #ff4757,
+                0 0 80px #ff4757,
+                0 0 120px #ff4757;
+        }
+
+        /* Heart Pseudo-elements */
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #ff4757;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -150px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -150px;
+        }
+
+        /* Heartbeat Animation */
+        @keyframes heartbeat {
+            0% {
+                transform: rotate(45deg) scale(1);
+            }
+            14% {
+                transform: rotate(45deg) scale(1.3);
+            }
+            28% {
+                transform: rotate(45deg) scale(1);
+            }
+            42% {
+                transform: rotate(45deg) scale(1.3);
+            }
+            70% {
+                transform: rotate(45deg) scale(1);
+            }
+            100% {
+                transform: rotate(45deg) scale(1);
+            }
+        }
+
+        /* Particles Styling */
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 71, 87, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Floating Hearts */
+        .floating-heart {
+            position: absolute;
+            opacity: 0;
+            animation: float 6s linear infinite;
+            z-index: -1;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Text Styling */
+        .love-text {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+            bottom: 20%;
+            opacity: 0;
+            animation: fadeInOut 8s infinite;
+            text-shadow: 0 0 10px #ff4757;
+        }
+
+        /* Text Animation */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Glow Effect */
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 71, 87, 0.4) 0%, transparent 70%);
+            animation: pulse 3s infinite alternate;
+            z-index: -2;
+        }
+
+        /* Glow Animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Controls Styling */
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            background-color: rgba(255, 71, 87, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            background-color: rgba(255, 71, 87, 1);
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .heart {
+                width: 200px;
+                height: 200px;
+            }
+
+            .heart::before,
+            .heart::after {
+                width: 200px;
+                height: 200px;
+            }
+
+            .heart::before {
+                top: -100px;
+            }
+
+            .heart::after {
+                left: -100px;
+            }
+
+            .love-text {
+                font-size: 18px;
+            }
+        }
+
+        /* Complex Background Elements */
+        .bg-element {
+            position: absolute;
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -3;
+        }
+
+        /* Complex Animation */
+        @keyframes complex-move {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50vw, 25vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(25vw, 50vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(-25vw, 25vh) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Additional Effects */
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255, 71, 87, 0.6);
+            border-radius: 50%;
+            animation: ripple 3s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+        }
+
+        /* Heartbeat Line */
+        .heartbeat-line {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 100px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .heartbeat-path {
+            fill: none;
+            stroke: #ff4757;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 5s linear forwards infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Additional Decorations */
+        .decoration {
+            position: absolute;
+            background-color: rgba(255, 71, 87, 0.3);
+            border-radius: 50%;
+            z-index: -2;
+        }
+
+        /* Complex Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            z-index: -10;
+        }
+
+        /* Floating Text */
+        .floating-text {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            animation: float-text 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes float-text {
+            0% {
+                transform: translateY(100vh) translateX(0);
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        /* Heart Pulse Effect */
+        .pulse-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(255, 71, 87, 0.2);
+            animation: pulse-effect 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse-effect {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Complex Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 71, 87, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 71, 87, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -5;
+        }
+
+        /* Additional Heart Variants */
+        .heart-variant {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757;
+            transform: rotate(45deg);
+            opacity: 0;
+            animation: variant-float 10s linear infinite;
+            z-index: -1;
+        }
+
+        .heart-variant::before,
+        .heart-variant::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757;
+            border-radius: 50%;
+        }
+
+        .heart-variant::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart-variant::after {
+            top: 0;
+            left: -25px;
+        }
+
+        @keyframes variant-float {
+            0% {
+                transform: rotate(45deg) translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotate(45deg) translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Complex Border Effect */
+        .border-effect {
+            position: absolute;
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #ff4757, #ff6b81, #ff4757);
+            border-image-slice: 1;
+            animation: border-rotate 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes border-rotate {
+            0% {
+                transform: rotate(0deg);
+                border-image: linear-gradient(0deg, #ff4757, #ff6b81, #ff4757);
+            }
+            100% {
+                transform: rotate(360deg);
+                border-image: linear-gradient(360deg, #ff4757, #ff6b81, #ff4757);
+            }
+        }
+
+        /* Additional Complex Elements */
+        .complex-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
+            animation: complex-spin 20s linear infinite;
+            opacity: 0.1;
+            z-index: -2;
+        }
+
+        @keyframes complex-spin {
+            0% {
+                transform: rotate(0deg) scale(0.5);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.5);
+            }
+            100% {
+                transform: rotate(360deg) scale(0.5);
+            }
+        }
+
+        /* More decorative elements */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Even more complex elements */
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100px;
+            background: rgba(255, 71, 87, 0.1);
+            animation: wave 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        /* Final decorative touches */
+        .final-touch {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: final-move 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes final-move {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50vw, 25vh);
+            }
+            50% {
+                transform: translate(25vw, 50vh);
+            }
+            75% {
+                transform: translate(-25vw, 25vh);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="grid-bg"></div>
+    
+    <div class="heart-container">
+        <div class="glow"></div>
+        <div class="heart"></div>
+        
+        <div class="love-text">Tình yêu của tôi dành cho bạn</div>
+        
+        <svg class="heartbeat-line" viewBox="0 0 500 100" preserveAspectRatio="none">
+            <path class="heartbeat-path" d="M0,50 L50,50 L60,30 L70,70 L80,30 L90,70 L100,30 L110,50 L120,50 L130,30 L140,70 L150,30 L160,70 L170,30 L180,50 L190,50 L200,30 L210,70 L220,30 L230,70 L240,30 L250,50 L260,50 L270,30 L280,70 L290,30 L300,70 L310,30 L320,50 L330,50 L340,30 L350,70 L360,30 L370,70 L380,30 L390,50 L400,50 L410,30 L420,70 L430,30 L440,70 L450,30 L460,50 L470,50 L480,30 L490,70 L500,30" />
+        </svg>
+    </div>
+    
+    <div class="controls">
+        <button class="control-btn" id="changeColor">Đổi màu</button>
+        <button class="control-btn" id="addParticles">Thêm hạt</button>
+        <button class="control-btn" id="addHearts">Thêm trái tim</button>
+    </div>
+
+    <script>
+        // Main Heart Configuration
+        const heartConfig = {
+            color: '#ff4757',
+            size: 300,
+            beatSpeed: 1.4,
+            glowIntensity: 0.8,
+            particlesEnabled: true,
+            floatingHeartsEnabled: true
+        };
+
+        // Color Palette Options
+        const colorPalettes = [
+            { main: '#ff4757', secondary: '#ff6b81', name: 'Đỏ' },
+            { main: '#2ed573', secondary: '#7bed9f', name: 'Xanh lá' },
+            { main: '#1e90ff', secondary: '#70a1ff', name: 'Xanh dương' },
+            { main: '#ffa502', secondary: '#ffbe76', name: 'Cam' },
+            { main: '#ff6348', secondary: '#ff7f50', name: 'Cà chua' },
+            { main: '#575fcf', secondary: '#778beb', name: 'Tím' },
+            { main: '#f368e0', secondary: '#f78fb3', name: 'Hồng' },
+            { main: '#00d2d3', secondary: '#00cec9', name: 'Ngọc lam' }
+        ];
+
+        // DOM Elements
+        const heart = document.querySelector('.heart');
+        const heartBefore = document.querySelector('.heart::before');
+        const heartAfter = document.querySelector('.heart::after');
+        const glow = document.querySelector('.glow');
+        const heartbeatPath = document.querySelector('.heartbeat-path');
+        const changeColorBtn = document.getElementById('changeColor');
+        const addParticlesBtn = document.getElementById('addParticles');
+        const addHeartsBtn = document.getElementById('addHearts');
+        const body = document.body;
+        const heartContainer = document.querySelector('.heart-container');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateHeartStyles();
+            createParticles();
+            createFloatingHearts();
+            createBackgroundElements();
+            createComplexElements();
+            createAdditionalDecorations();
+            setupEventListeners();
+            startHeartbeatLineAnimation();
+        });
+
+        // Update Heart Styles based on config
+        function updateHeartStyles() {
+            heart.style.backgroundColor = heartConfig.color;
+            heart.style.boxShadow = `0 0 40px ${heartConfig.color}, 0 0 80px ${heartConfig.color}, 0 0 120px ${heartConfig.color}`;
+            heart.style.width = `${heartConfig.size}px`;
+            heart.style.height = `${heartConfig.size}px`;
+            heart.style.animationDuration = `${heartConfig.beatSpeed}s`;
+            
+            // Update pseudo-elements
+            document.styleSheets[0].insertRule(
+                `.heart::before, .heart::after { width: ${heartConfig.size}px; height: ${heartConfig.size}px; background-color: ${heartConfig.color}; }`,
+                document.styleSheets[0].cssRules.length
+            );
+            
+            document.styleSheets[0].insertRule(
+                `.heart::before { top: -${heartConfig.size/2}px; }`,
+                document.styleSheets[0].cssRules.length
+            );
+            
+            document.styleSheets[0].insertRule(
+                `.heart::after { left: -${heartConfig.size/2}px; }`,
+                document.styleSheets[0].cssRules.length
+            );
+            
+            // Update glow
+            glow.style.background = `radial-gradient(circle at center, ${heartConfig.color} 0%, transparent 70%)`;
+        }
+
+        // Create Particles
+        function createParticles() {
+            if (!heartConfig.particlesEnabled) return;
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    const size = Math.random() * 5 + 2;
+                    const posX = Math.random() * window.innerWidth;
+                    const posY = Math.random() * window.innerHeight;
+                    const opacity = Math.random() * 0.5 + 0.3;
+                    const animationDuration = Math.random() * 10 + 5;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}px`;
+                    particle.style.top = `${posY}px`;
+                    particle.style.opacity = opacity;
+                    particle.style.animation = `float ${animationDuration}s linear ${delay}s infinite`;
+                    particle.style.backgroundColor = heartConfig.color;
+                    
+                    document.body.appendChild(particle);
+                    
+                    // Make particles move randomly
+                    setInterval(() => {
+                        const newX = posX + (Math.random() * 100 - 50);
+                        const newY = posY + (Math.random() * 100 - 50);
+                        
+                        particle.style.transform = `translate(${newX - posX}px, ${newY - posY}px)`;
+                    }, 3000);
+                }, i * 50);
+            }
+        }
+
+        // Create Floating Hearts
+        function createFloatingHearts() {
+            if (!heartConfig.floatingHeartsEnabled) return;
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const floatingHeart = document.createElement('div');
+                    floatingHeart.classList.add('floating-heart');
+                    
+                    const size = Math.random() * 30 + 10;
+                    const posX = Math.random() * window.innerWidth;
+                    const delay = Math.random() * 5;
+                    const duration = Math.random() * 10 + 5;
+                    const rotation = Math.random() * 360;
+                    
+                    floatingHeart.style.width = `${size}px`;
+                    floatingHeart.style.height = `${size}px`;
+                    floatingHeart.style.left = `${posX}px`;
+                    floatingHeart.style.bottom = `-${size}px`;
+                    floatingHeart.style.animationDuration = `${duration}s`;
+                    floatingHeart.style.animationDelay = `${delay}s`;
+                    floatingHeart.style.backgroundColor = heartConfig.color;
+                    
+                    // Create heart shape
+                    floatingHeart.style.transform = `rotate(${rotation}deg)`;
+                    floatingHeart.style.borderRadius = '0';
+                    floatingHeart.style.position = 'absolute';
+                    
+                    // Pseudo-elements for heart shape
+                    const before = document.createElement('div');
+                    before.style.content = '""';
+                    before.style.position = 'absolute';
+                    before.style.width = `${size}px`;
+                    before.style.height = `${size}px`;
+                    before.style.backgroundColor = heartConfig.color;
+                    before.style.borderRadius = '50%';
+                    before.style.top = `-${size/2}px`;
+                    before.style.left = '0';
+                    
+                    const after = document.createElement('div');
+                    after.style.content = '""';
+                    after.style.position = 'absolute';
+                    after.style.width = `${size}px`;
+                    after.style.height = `${size}px`;
+                    after.style.backgroundColor = heartConfig.color;
+                    after.style.borderRadius = '50%';
+                    after.style.top = '0';
+                    after.style.left = `-${size/2}px`;
+                    
+                    floatingHeart.appendChild(before);
+                    floatingHeart.appendChild(after);
+                    
+                    document.body.appendChild(floatingHeart);
+                }, i * 300);
+            }
+        }
+
+        // Create Background Elements
+        function createBackgroundElements() {
+            for (let i = 0; i < 15; i++) {
+                const bgElement = document.createElement('div');
+                bgElement.classList.add('bg-element');
+                
+                const size = Math.random() * 200 + 50;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const opacity = Math.random() * 0.1 + 0.05;
+                const duration = Math.random() * 30 + 20;
+                const delay = Math.random() * 10;
+                
+                bgElement.style.width = `${size}px`;
+                bgElement.style.height = `${size}px`;
+                bgElement.style.left = `${posX}px`;
+                bgElement.style.top = `${posY}px`;
+                bgElement.style.opacity = opacity;
+                bgElement.style.animation = `complex-move ${duration}s linear ${delay}s infinite`;
+                
+                document.body.appendChild(bgElement);
+            }
+        }
+
+        // Create Complex Elements
+        function createComplexElements() {
+            for (let i = 0; i < 10; i++) {
+                const complexElement = document.createElement('div');
+                complexElement.classList.add('complex-element');
+                
+                const size = Math.random() * 150 + 50;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const duration = Math.random() * 40 + 20;
+                const delay = Math.random() * 15;
+                
+                complexElement.style.width = `${size}px`;
+                complexElement.style.height = `${size}px`;
+                complexElement.style.left = `${posX}px`;
+                complexElement.style.top = `${posY}px`;
+                complexElement.style.animationDuration = `${duration}s`;
+                complexElement.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(complexElement);
+            }
+        }
+
+        // Create Additional Decorations
+        function createAdditionalDecorations() {
+            // Ripple effects
+            for (let i = 0; i < 5; i++) {
+                setInterval(() => {
+                    const ripple = document.createElement('div');
+                    ripple.classList.add('ripple');
+                    
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    const offsetX = (Math.random() * 200 - 100);
+                    const offsetY = (Math.random() * 200 - 100);
+                    
+                    ripple.style.left = `${centerX + offsetX}px`;
+                    ripple.style.top = `${centerY + offsetY}px`;
+                    ripple.style.borderColor = heartConfig.color;
+                    
+                    document.body.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 3000);
+                }, i * 1500);
+            }
+            
+            // Sparkles
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    
+                    const posX = Math.random() * window.innerWidth;
+                    const posY = Math.random() * window.innerHeight;
+                    const delay = Math.random() * 5;
+                    const duration = Math.random() * 2 + 1;
+                    
+                    sparkle.style.left = `${posX}px`;
+                    sparkle.style.top = `${posY}px`;
+                    sparkle.style.animationDuration = `${duration}s`;
+                    sparkle.style.animationDelay = `${delay}s`;
+                    
+                    document.body.appendChild(sparkle);
+                }, i * 200);
+            }
+            
+            // Floating text
+            const messages = ['Yêu', 'Thương', 'Nhớ', '❤️', 'Tình yêu', 'Bạn', 'Mãi mãi', 'Forever'];
+            for (let i = 0; i < 20; i++) {
+                const text = document.createElement('div');
+                text.classList.add('floating-text');
+                text.textContent = messages[Math.floor(Math.random() * messages.length)];
+                
+                const posX = Math.random() * window.innerWidth;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 30 + 20;
+                
+                text.style.left = `${posX}px`;
+                text.style.bottom = '0';
+                text.style.animationDuration = `${duration}s`;
+                text.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(text);
+            }
+            
+            // Pulse effects
+            setInterval(() => {
+                const pulse = document.createElement('div');
+                pulse.classList.add('pulse-effect');
+                
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                pulse.style.left = `${centerX}px`;
+                pulse.style.top = `${centerY}px`;
+                pulse.style.backgroundColor = heartConfig.color;
+                
+                document.body.appendChild(pulse);
+                
+                setTimeout(() => {
+                    pulse.remove();
+                }, 2000);
+            }, 3000);
+            
+            // Heart variants
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heartVariant = document.createElement('div');
+                    heartVariant.classList.add('heart-variant');
+                    
+                    const size = Math.random() * 50 + 20;
+                    const posX = Math.random() * window.innerWidth;
+                    const delay = Math.random() * 10;
+                    const duration = Math.random() * 15 + 10;
+                    
+                    heartVariant.style.width = `${size}px`;
+                    heartVariant.style.height = `${size}px`;
+                    heartVariant.style.left = `${posX}px`;
+                    heartVariant.style.bottom = '0';
+                    heartVariant.style.animationDuration = `${duration}s`;
+                    heartVariant.style.animationDelay = `${delay}s`;
+                    heartVariant.style.backgroundColor = heartConfig.color;
+                    
+                    // Pseudo-elements
+                    const before = document.createElement('div');
+                    before.style.content = '""';
+                    before.style.position = 'absolute';
+                    before.style.width = `${size}px`;
+                    before.style.height = `${size}px`;
+                    before.style.backgroundColor = heartConfig.color;
+                    before.style.borderRadius = '50%';
+                    before.style.top = `-${size/2}px`;
+                    before.style.left = '0';
+                    
+                    const after = document.createElement('div');
+                    after.style.content = '""';
+                    after.style.position = 'absolute';
+                    after.style.width = `${size}px`;
+                    after.style.height = `${size}px`;
+                    after.style.backgroundColor = heartConfig.color;
+                    after.style.borderRadius = '50%';
+                    after.style.top = '0';
+                    after.style.left = `-${size/2}px`;
+                    
+                    heartVariant.appendChild(before);
+                    heartVariant.appendChild(after);
+                    
+                    document.body.appendChild(heartVariant);
+                }, i * 1000);
+            }
+            
+            // Border effects
+            for (let i = 0; i < 3; i++) {
+                const borderEffect = document.createElement('div');
+                borderEffect.classList.add('border-effect');
+                
+                const size = Math.random() * 300 + 200;
+                const posX = Math.random() * (window.innerWidth - size);
+                const posY = Math.random() * (window.innerHeight - size);
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                borderEffect.style.width = `${size}px`;
+                borderEffect.style.height = `${size}px`;
+                borderEffect.style.left = `${posX}px`;
+                borderEffect.style.top = `${posY}px`;
+                borderEffect.style.animationDuration = `${duration}s`;
+                borderEffect.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(borderEffect);
+            }
+            
+            // Final decorative touches
+            for (let i = 0; i < 30; i++) {
+                const finalTouch = document.createElement('div');
+                finalTouch.classList.add('final-touch');
+                
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 15;
+                
+                finalTouch.style.width = `${size}px`;
+                finalTouch.style.height = `${size}px`;
+                finalTouch.style.left = `${posX}px`;
+                finalTouch.style.top = `${posY}px`;
+                finalTouch.style.animationDuration = `${duration}s`;
+                finalTouch.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(finalTouch);
+            }
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Change color button
+            changeColorBtn.addEventListener('click', function() {
+                const newColor = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
+                heartConfig.color = newColor.main;
+                updateHeartStyles();
+                
+                // Update all particles and effects
+                document.querySelectorAll('.particle, .floating-heart, .heart-variant').forEach(el => {
+                    el.style.backgroundColor = newColor.main;
+                });
+                
+                document.querySelectorAll('.ripple').forEach(el => {
+                    el.style.borderColor = newColor.main;
+                });
+                
+                document.querySelectorAll('.pulse-effect').forEach(el => {
+                    el.style.backgroundColor = newColor.main;
+                });
+                
+                heartbeatPath.style.stroke = newColor.main;
+            });
+            
+            // Add particles button
+            addParticlesBtn.addEventListener('click', function() {
+                heartConfig.particlesEnabled = !heartConfig.particlesEnabled;
+                if (heartConfig.particlesEnabled) {
+                    createParticles();
+                    addParticlesBtn.textContent = 'Tắt hạt';
+                } else {
+                    document.querySelectorAll('.particle').forEach(el => el.remove());
+                    addParticlesBtn.textContent = 'Thêm hạt';
+                }
+            });
+            
+            // Add hearts button
+            addHeartsBtn.addEventListener('click', function() {
+                heartConfig.floatingHeartsEnabled = !heartConfig.floatingHeartsEnabled;
+                if (heartConfig.floatingHeartsEnabled) {
+                    createFloatingHearts();
+                    addHeartsBtn.textContent = 'Tắt trái tim';
+                } else {
+                    document.querySelectorAll('.floating-heart').forEach(el => el.remove());
+                    addHeartsBtn.textContent = 'Thêm trái tim';
+                }
+            });
+            
+            // Window resize
+            window.addEventListener('resize', function() {
+                // Recreate elements on resize
+                document.querySelectorAll('.particle, .floating-heart, .bg-element, .complex-element, .ripple, .sparkle, .floating-text, .pulse-effect, .heart-variant, .border-effect, .final-touch').forEach(el => el.remove());
+                createParticles();
+                createFloatingHearts();
+                createBackgroundElements();
+                createComplexElements();
+                createAdditionalDecorations();
+            });
+            
+            // Mouse move effect
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX;
+                const y = e.clientY;
+                
+                // Create temporary sparkle
+                if (Math.random() > 0.7) {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkle');
+                    
+                    sparkle.style.left = `${x}px`;
+                    sparkle.style.top = `${y}px`;
+                    sparkle.style.animationDuration = '1s';
+                    
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 1000);
+                }
+            });
+        }
+
+        // Heartbeat Line Animation
+        function startHeartbeatLineAnimation() {
+            let offset = 0;
+            setInterval(() => {
+                offset += 10;
+                if (offset > 1000) offset = 0;
+                heartbeatPath.style.strokeDashoffset = offset;
+            }, 100);
+        }
+
+        // Utility Functions
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+</body>
+</html>
